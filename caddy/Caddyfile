@@ -1,0 +1,7 @@
+:80 {
+    reverse_proxy frontend:3000
+}
+
+api.localhost {
+    reverse_proxy backend:9000
+}
