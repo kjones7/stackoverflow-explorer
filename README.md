@@ -24,3 +24,6 @@ A web app that allows you to explore Stack Overflow's [data](https://data.stacke
         - `opcache.interned_strings_buffer=8`
         - `opcache.max_accelerated_files=4000`
         - `opcache.revalidate_freq=2`
+
+## Setup
+1. Extract the Stack Overflow database .zip files and move the `.mdf`, `.ndf`, and `.ldf` files to the SQL Server `DATA` directory, then attach the database through SSMS.
