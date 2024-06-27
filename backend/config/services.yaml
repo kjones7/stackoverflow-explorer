@@ -22,3 +22,18 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    # Register the DateTimeNormalizer
+    Symfony\Component\Serializer\Normalizer\DateTimeNormalizer: ~
+
+    # Register the ObjectNormalizer
+    Symfony\Component\Serializer\Normalizer\ObjectNormalizer: ~
+
+    # Register the Serializer
+    Symfony\Component\Serializer\Serializer:
+        arguments:
+            $normalizers:
+                - '@serializer.normalizer.datetime'
+                - '@serializer.normalizer.object'
+            $encoders:
+                - '@serializer.encoder.json'
