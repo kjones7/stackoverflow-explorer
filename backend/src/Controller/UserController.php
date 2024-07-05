@@ -35,7 +35,6 @@ class UserController extends AbstractController
     public function show(int $id): JsonResponse
     {
         $user = $this->userRepository->find($id);
-        error_log(print_r($user, true));
 
         if (!$user) {
             return $this->json(['message' => 'User not found'], Response::HTTP_NOT_FOUND);

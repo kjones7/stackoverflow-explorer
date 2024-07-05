@@ -60,3 +60,15 @@ A web app that allows you to explore Stack Overflow's [data](https://data.stacke
 RESTORE DATABASE [StackOverflow2013]
 FROM DATABASE_SNAPSHOT = 'StackOverflow2013_Snapshot';
 ```
+
+### Start Local Symfony Server
+In `backend` directory:
+```
+symfony server:start
+```
+
+### Run Backend Tests
+In `backend` directory:
+```
+php bin/phpunit
+```
