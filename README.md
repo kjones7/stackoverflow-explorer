@@ -9,10 +9,12 @@ A web app that allows you to explore Stack Overflow's [data](https://data.stacke
 1. Install [SQL Server Developer](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
 1. Install [SQL Server Management Studio](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms)
    - Through SSMS:
-     - Add a new user
-     - Right-click the server, make sure "Server authentication" is set to "SQL Server and Windows Authentication mode"
-     - For the stackoverflow database, add the following permissions for the new user: Select, Update, Insert, Delete.
-     - Reminder: When logging in with user through SSMS, click the "Options >>" button and make sure "Trust server certificate" is checked.
+     - Setup sa user and set password to "password"
+     - Setup a new user
+       - Add a new user
+       - Right-click the server, make sure "Server authentication" is set to "SQL Server and Windows Authentication mode"
+       - For the stackoverflow database, add the following permissions for the new user: Select, Update, Insert, Delete.
+       - Reminder: When logging in with user through SSMS, click the "Options >>" button and make sure "Trust server certificate" is checked.
 1. Install [ODBC Driver for SQL Server](https://learn.microsoft.com/en-us/sql/connect/odbc/download-odbc-driver-for-sql-server?view=sql-server-ver16) (required for PHP to use SQL Server)
 1. Install `sqlsrv` and `pdo_sqlsrv` PHP extensions
     - Download [here](https://github.com/microsoft/msphpsql/releases)
