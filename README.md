@@ -21,7 +21,7 @@ A web app that allows you to explore Stack Overflow's [data](https://data.stacke
 1. Download the [Stack Overflow data](https://www.brentozar.com/archive/2015/10/how-to-download-the-stack-overflow-database-via-bittorrent/) (I used the 50GB database)
     - Extract the Stack Overflow database .zip files and move the `.mdf`, `.ndf`, and `.ldf` files to the SQL Server `DATA` directory, then attach the database through SSMS.
     - Create a `C:\Snapshots` directory
-    - Run the following SQL in SSMS to create a snapshot of the `StackOverflow2013` database (this will be used to restore the database after tests):
+    - Run the following SQL in SSMS to create a snapshot of the `StackOverflow2013` database (helpful to have this just in case):
     ```tsql
     CREATE DATABASE [StackOverflow2013_Snapshot]
     ON
@@ -43,6 +43,7 @@ A web app that allows you to explore Stack Overflow's [data](https://data.stacke
     )
     AS SNAPSHOT OF [StackOverflow2013];
     ```
+1. Run `backend/sql/create_test_database.sql` in SSMS to create the test database.
 1. Optional suggestions from Symfony requirements check:
     - Uncomment `extension=intl` from `php.ini`
     - Set the following in `php.ini`: `realpath_cache_size = 5M`
