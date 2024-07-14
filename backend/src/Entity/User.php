@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
@@ -20,18 +21,18 @@ class User
     #[Groups(['user:read'])]
     private ?int $reputation = null;
 
-    #[ORM\Column]
+    #[ORM\Column(type: 'sqlserver_datetime')]
     #[Groups(['user:read'])]
-    private ?\DateTimeImmutable $creationDate = null;
+    private ?\DateTime $creationDate = null;
 
     #[ORM\Column(length: 40)]
     #[Groups(['user:read'])]
     private ?string $displayName = null;
 
     // Datetime user last loaded a page; updated every 30 min at most
-    #[ORM\Column]
+    #[ORM\Column(type: 'sqlserver_datetime')]
     #[Groups(['user:read'])]
-    private ?\DateTimeImmutable $lastAccessDate = null;
+    private ?\DateTime $lastAccessDate = null;
 
     #[ORM\Column(length: 200, nullable: true)]
     #[Groups(['user:read'])]
@@ -85,12 +86,12 @@ class User
         return $this;
     }
 
-    public function getCreationDate(): ?\DateTimeImmutable
+    public function getCreationDate(): ?\DateTime
     {
         return $this->creationDate;
     }
 
-    public function setCreationDate(\DateTimeImmutable $creationDate): self
+    public function setCreationDate(\DateTime $creationDate): self
     {
         $this->creationDate = $creationDate;
 
@@ -109,12 +110,12 @@ class User
         return $this;
     }
 
-    public function getLastAccessDate(): ?\DateTimeImmutable
+    public function getLastAccessDate(): ?\DateTime
     {
         return $this->lastAccessDate;
     }
 
-    public function setLastAccessDate(\DateTimeImmutable $lastAccessDate): self
+    public function setLastAccessDate(\DateTime $lastAccessDate): self
     {
         $this->lastAccessDate = $lastAccessDate;
 

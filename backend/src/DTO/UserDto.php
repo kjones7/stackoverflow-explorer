@@ -11,16 +11,16 @@ class UserDto
     public ?int $reputation = null;
 
     #[Assert\NotBlank]
-    public ?\DateTimeImmutable $creationDate = null;
+    public ?\DateTime $creationDate = null;
 
     #[Assert\NotBlank]
     #[Assert\Length(max: 40)]
     public ?string $displayName = null;
 
     #[Assert\NotBlank]
-    public ?\DateTimeImmutable $lastAccessDate = null;
+    public ?\DateTime $lastAccessDate = null;
 
-    #[Assert\Url]
+    #[Assert\Url(requireTld: true)]
     #[Assert\Length(max: 200)]
     public ?string $websiteUrl = null;
 
