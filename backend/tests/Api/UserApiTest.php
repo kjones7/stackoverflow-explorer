@@ -1,7 +1,7 @@
 <?php
 namespace App\Tests\Api;
 
-use App\DTO\UserDto;
+use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -118,22 +118,22 @@ class UserApiTest extends WebTestCase
 
     public function testCreateUser(): void
     {
-        // Create UserDto object
-        $userDto = new UserDto();
-        $userDto->reputation = 0;
-        $userDto->creationDate = new \DateTime('2024-07-19 10:00:00');
-        $userDto->displayName = 'TheDude';
-        $userDto->lastAccessDate = new \DateTime('2024-07-19 14:00:00');
-        $userDto->websiteUrl = 'https://example.dev';
-        $userDto->location = 'New York, NY';
-        $userDto->aboutMe = 'About me? I am the dude.';
-        $userDto->views = 0;
-        $userDto->upVotes = 0;
-        $userDto->downVotes = 0;
-        $userDto->accountId = 1337;
+        // Create User object
+        $user = new User();
+        $user->setReputation(0);
+        $user->setCreationDate(new \DateTime('2024-07-19 10:00:00'));
+        $user->setDisplayName('TheDude');
+        $user->setLastAccessDate(new \DateTime('2024-07-19 14:00:00'));
+        $user->setWebsiteUrl('https://example.dev');
+        $user->setLocation('New York, NY');
+        $user->setAboutMe('About me? I am the dude.');
+        $user->setViews(0);
+        $user->setUpVotes(0);
+        $user->setDownVotes(0);
+        $user->setAccountId(1337);
 
-        // Serialize the UserDto object to JSON
-        $userJson = $this->serializer->serialize($userDto, 'json');
+        // Serialize the User object to JSON
+        $userJson = $this->serializer->serialize($user, 'json');
 
         // Send the request with JSON data
         $this->client->request(

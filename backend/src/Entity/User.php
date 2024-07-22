@@ -3,9 +3,9 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: 'Users')]
@@ -19,27 +19,36 @@ class User
 
     #[ORM\Column]
     #[Groups(['user:read'])]
+    #[Assert\NotBlank]
+    #[Assert\Type('integer')]
     private ?int $reputation = null;
 
     #[ORM\Column(type: 'sqlserver_datetime')]
     #[Groups(['user:read'])]
+    #[Assert\NotBlank]
     private ?\DateTime $creationDate = null;
 
     #[ORM\Column(length: 40)]
     #[Groups(['user:read'])]
+    #[Assert\NotBlank]
+    #[Assert\Length(max: 40)]
     private ?string $displayName = null;
 
     // Datetime user last loaded a page; updated every 30 min at most
     #[ORM\Column(type: 'sqlserver_datetime')]
     #[Groups(['user:read'])]
+    #[Assert\NotBlank]
     private ?\DateTime $lastAccessDate = null;
 
     #[ORM\Column(length: 200, nullable: true)]
     #[Groups(['user:read'])]
+    #[Assert\Url(requireTld: true)]
+    #[Assert\Length(max: 200)]
     private ?string $websiteUrl = null;
 
     #[ORM\Column(length: 100, nullable: true)]
     #[Groups(['user:read'])]
+    #[Assert\Length(max: 100)]
     private ?string $location = null;
 
     #[ORM\Column(type: 'text', nullable: true)]
@@ -49,15 +58,21 @@ class User
     // Number of times the profile is viewed
     #[ORM\Column]
     #[Groups(['user:read'])]
+    #[Assert\NotBlank]
+    #[Assert\Type('integer')]
     private ?int $views = null;
 
     // How many upvotes the user has cast
     #[ORM\Column]
     #[Groups(['user:read'])]
+    #[Assert\NotBlank]
+    #[Assert\Type('integer')]
     private ?int $upVotes = null;
 
     #[ORM\Column]
     #[Groups(['user:read'])]
+    #[Assert\NotBlank]
+    #[Assert\Type('integer')]
     private ?int $downVotes = null;
 
     // Now always blank
@@ -67,6 +82,7 @@ class User
     // User's Stack Exchange Network profile ID
     #[ORM\Column(nullable: true)]
     #[Groups(['user:read'])]
+    #[Assert\Type('integer')]
     private ?int $accountId = null;
 
     public function getId(): ?int
@@ -190,18 +206,6 @@ class User
     public function setDownVotes(int $downVotes): self
     {
         $this->downVotes = $downVotes;
-
-        return $this;
-    }
-
-    public function getProfileImageUrl(): ?string
-    {
-        return $this->profileImageUrl;
-    }
-
-    public function setProfileImageUrl(?string $profileImageUrl): self
-    {
-        $this->profileImageUrl = $profileImageUrl;
 
         return $this;
     }
